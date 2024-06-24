@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Interactive Learning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        h1 {
+            color: #4bbd58;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4bbd58;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #3a9e48;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tentang Kami</h1>
+        <p>Selamat datang di aplikasi Interactive Learning, tempat untuk belajar secara interaktif mengenai berbagai materi pembelajaran. Kami berkomitmen untuk memberikan pengalaman belajar yang menyenangkan dan efektif bagi semua pengguna.</p>
+        <p>Aplikasi ini didesain untuk memudahkan Anda dalam mengakses berbagai materi pembelajaran dengan konten yang berkualitas. Kami terus berusaha untuk meningkatkan dan menambah konten-konten baru yang bermanfaat.</p>
+        <p>Jika Anda memiliki pertanyaan atau masukan, jangan ragu untuk menghubungi kami melalui halaman kontak. Terima kasih telah menggunakan aplikasi Interactive Learning!</p>
+        <button class="back-button" onclick="goToIndex()">Kembali ke Halaman Utama</button>
+    </div>
+
+    <script>
+        function goToIndex() {
+            window.location.href = "index.html"; // Sesuaikan dengan nama file halaman index Anda
+        }
+    </script>
+</body>
+</html>

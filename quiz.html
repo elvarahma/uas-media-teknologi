@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Berbagai Pergolakan di Dalam Negeri (1948-1965)</title>
+    <style>
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+        color: #4bbd58;
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4bbd58;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #3a9e48;
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .option {
+        margin: 10px 0;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4bbd58;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+    }
+
+    .option:hover {
+        background-color: #3a9e48;
+    }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4bbd58;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #3a9e48;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QUIZ</h1>
+        <form id="user-info">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <button type="button" onclick="startQuiz()">Mulai Quiz</button>
+        </form>
+        <div id="quiz" style="display: none;">
+            <h2 id="question" class="question"></h2>
+            <div class="options">
+                <button class="option" onclick="checkAnswer(this)"></button>
+                <button class="option" onclick="checkAnswer(this)"></button>
+                <button class="option" onclick="checkAnswer(this)"></button>
+                <button class="option" onclick="checkAnswer(this)"></button>
+            </div>
+        </div>
+        <div id="result" style="display: none;">
+            <h2>Hasil Quiz</h2>
+            <p id="score"></p>
+            <button onclick="restartQuiz()">Ulangi Quiz</button>
+            <button onclick="goToIndex()">Kembali ke Halaman Utama</button>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Peristiwa konflik dan pergolakan yang terjadi pada tahun 1948 yang melibatkan pemberontakan besar pertama setelah Indonesia merdeka adalah?",
+                options: ["Pemberontakan PKI di Madiun", "Pemberontakan DI/TII", "Peristiwa G30S/PKI", "Pemberontakan PRRI dan Permesta"],
+                answer: "Pemberontakan PKI di Madiun"
+            },
+            {
+                question: "Peristiwa yang menandai tahun 1965 dalam sejarah Indonesia adalah?",
+                options: ["Pemberontakan APRA", "Peristiwa G30S/PKI", "Pemberontakan RMS", "Pemberontakan Andi Aziz"],
+                answer: "Peristiwa G30S/PKI"
+            },
+            {
+                question: "Kelompok yang mengusung ideologi komunisme dalam konteks konflik politik di Indonesia pada masa itu adalah?",
+                options: ["PKI", "NU", "Masyumi", "PSI"],
+                answer: "PKI"
+            },
+            {
+                question: "Kategori pergolakan yang berkaitan dengan kepentingan vested interest adalah?",
+                options: ["Pemberontakan APRA", "Pemberontakan DI/TII", "Pemberontakan PRRI dan Permesta", "Pemberontakan RMS"],
+                answer: "Pemberontakan APRA"
+            },
+            {
+                question: "Negara federal yang diusulkan berdasarkan perjanjian Linggajati adalah?",
+                options: ["Negara Madura", "Negara Pasundan", "Negara Indonesia Timur", "Republik Indonesia Serikat"],
+                answer: "Republik Indonesia Serikat"
+            },
+            {
+                question: "Sistem pemerintahan yang digunakan Indonesia sebelum perubahan menjadi sistem parlementer adalah?",
+                options: ["Presidensial", "Monarki Konstitusional", "Parlementer", "Otoriter"],
+                answer: "Presidensial"
+            },
+            {
+                question: "Konstitusi yang menjadi dasar hukum untuk pelaksanaan sistem parlementer pada masa Demokrasi Liberal adalah?",
+                options: ["Konstitusi RIS", "Piagam Jakarta", "UUD 1945", "Konstitusi Liberal"],
+                answer: "Konstitusi Liberal"
+            },
+            {
+                question: "Pada tanggal berapa Soekarno mengumumkan pembentukan Partai Nasional Indonesia (PNI) sebagai partai tunggal?",
+                options: ["17 Agustus 1945", "23 Agustus 1945", "3 November 1945", "1 Juni 1946"],
+                answer: "23 Agustus 1945"
+            },
+            {
+                question: "Pemilihan Umum tahun 1955 dianggap sebagai tonggak demokrasi pertama di Indonesia karena?",
+                options: ["Memilih presiden pertama Indonesia", "Menandai kembalinya monarki", "Menentukan hidup kepartaian Indonesia", "Menyatakan kemerdekaan Indonesia"],
+                answer: "Menentukan hidup kepartaian Indonesia"
+            },
+            {
+                question: "Partai politik yang pertama kali diumumkan pada 17 Agustus 1945, namun gagal terbentuk adalah?",
+                options: ["Partai Nasional Indonesia", "Partai Komunis Indonesia", "Partai Syarikat Islam Indonesia", "Partai Indonesia Raya"],
+                answer: "Partai Nasional Indonesia"
+            },
+            {
+                question: "Dalam konteks politik Indonesia pada masa Demokrasi Terpimpin, istilah 'Nasakom' merujuk kepada?",
+                options: ["Nasionalisme, Agama, Komunisme", "Nasionalisme, Komunisme, Militerisme", "Nasionalisme, Komunisme, Modernisme", "Nasionalisme, Agama, Modernisme"],
+                answer: "Nasionalisme, Agama, Komunisme"
+            },
+            {
+                question: "Salah satu upaya politik Presiden Soekarno untuk mengurangi pengaruh TNI AD adalah dengan merangkul angkatan-angkatan bersenjata lainnya, terutama angkatan?",
+                options: ["Laut", "Udara", "Darat", "Perang"],
+                answer: "Udara"
+            },
+            {
+                question: "Peristiwa politik luar negeri yang menjadi fokus perhatian Indonesia pada masa Demokrasi Terpimpin adalah?",
+                options: ["Konferensi Bandung", "Pembebasan Irian Barat", "Perang Dingin", "Perundingan Linggarjati"],
+                answer: "Pembebasan Irian Barat"
+            },
+            {
+                question: "Dalam upaya penyelesaian masalah Irian Barat, Indonesia mengajukan permasalahan ini ke forum internasional berikut, kecuali?",
+                options: ["PBB", "ASEAN", "Sidang Majelis Umum PBB", "Konferensi Asia-Afrika"],
+                answer: "ASEAN"
+            },
+            {
+                question: "Piagam Penyerahan Kedaulatan menentukan bahwa status quo Irian Barat akan berlaku selama?",
+                options: ["1 bulan", "6 bulan", "1 tahun", "2 tahun"],
+                answer: "1 tahun"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userName = '';
+        let userEmail = '';
+
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.querySelector('.options');
+        const resultElement = document.getElementById('result');
+        const scoreElement = document.getElementById('score');
+
+        function startQuiz() {
+            userName = document.getElementById('name').value;
+            userEmail = document.getElementById('email').value;
+
+            if (userName && userEmail) {
+                document.getElementById('user-info').style.display = 'none';
+                document.getElementById('quiz').style.display = 'block';
+                loadQuestion();
+            } else {
+                alert('Mohon lengkapi nama dan email Anda untuk memulai quiz.');
+            }
+        }
+
+        function loadQuestion() {
+            const currentQuizData = quizData[currentQuestion];
+            questionElement.textContent = currentQuizData.question;
+            optionsElement.innerHTML = '';
+            currentQuizData.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('option');
+                button.setAttribute('onclick', 'checkAnswer(this)');
+                optionsElement.appendChild(button);
+            });
+        }
+
+        function checkAnswer(option) {
+            const selectedOption = option.textContent;
+            const currentQuizData = quizData[currentQuestion];
+
+            if (selectedOption === currentQuizData.answer) {
+                score++;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById('quiz').style.display = 'none';
+            resultElement.style.display = 'block';
+            scoreElement.textContent = `Hai ${userName}, Skor Anda: ${score} dari ${quizData.length}`;
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('quiz').style.display = 'block';
+            resultElement.style.display = 'none';
+            loadQuestion();
+        }
+
+        function goToIndex() {
+            window.location.href = "index.html"; // Ganti dengan nama file halaman index Anda
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
